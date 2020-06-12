@@ -268,10 +268,7 @@ class TicTacToe:
         elif list[0][2] == list[1][1] == '' and list[2][0] == 'X':
             X1 += 1
 
-        # check for O win
-
         # check for double Os
-
         for i in range(0, 3):
             if list[i][0] == list[i][1] == 'O' and list[i][2] == '':
                 O2 += 1
