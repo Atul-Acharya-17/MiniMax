@@ -31,12 +31,12 @@ class Button:
 
 class TicTacToe:
     def __init__(self):
-        self.colours = {0: (255, 100, 100), 1: (100, 100, 255)}
+        self.colours = {0: (255, 200, 200), 1: (200, 200, 255)}
         self.depth = 3
         self.moves = {1: "X", 0: "O"}
         self.ai_turn = random.choice([1, 0])
         self.state = [['', '', ''], ['', '', ''], ['', '', '']]
-        self.screen_dimensions = (302, 302)
+        self.screen_dimensions = (300, 300)
         self.block_size = 100
         self.number_of_grids = 3
         self.buttons = []
@@ -98,10 +98,10 @@ class TicTacToe:
             self.drawGrid()
 
             if self.checkWin(self.state, (self.turn + 1) % 2):
-                self.drawCircle((self.turn + 1) % 2)
+                self.drawWinner((self.turn + 1) % 2)
 
             if self.checkWin(self.state, self.turn % 2):
-                self.drawCircle(self.turn % 2)
+                self.drawWinner(self.turn % 2)
 
             # checking if button is active
             for i in range(0, 9):
@@ -124,9 +124,13 @@ class TicTacToe:
     def displayText(self):
         for row in range(self.number_of_grids):
             for column in range(self.number_of_grids):
+                if self.state[row][column] == 'X':
+                    colour = (0, 0, 255)
+                else:
+                    colour = (255, 0, 0)
                 x = column * (self.block_size + 1) + 10
                 y = row * (self.block_size + 1) + 10
-                text = self.font.render(self.state[row][column], True, (0, 0, 0))
+                text = self.font.render(self.state[row][column], True, colour)
                 self.screen.blit(text, (x, y))
 
     def playMove(self, i, j):
@@ -351,7 +355,7 @@ class TicTacToe:
             return False
         return True
 
-    def drawCircle(self, player):
+    def drawWinner(self, player):
         colour = self.colours[player]
         # check same rows
         for row in range(0, 3):
