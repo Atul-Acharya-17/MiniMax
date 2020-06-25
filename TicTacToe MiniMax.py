@@ -32,9 +32,9 @@ class Button:
 class TicTacToe:
     def __init__(self):
         self.colours = {0: (255, 200, 200), 1: (200, 200, 255)}
-        self.depth = 3
+        self.depth = 4
         self.moves = {1: "X", 0: "O"}
-        self.ai_turn = random.choice([1, 0])
+        self.ai_turn = 0  # random.choice([1, 0])
         self.state = [['', '', ''], ['', '', ''], ['', '', '']]
         self.screen_dimensions = (300, 300)
         self.block_size = 100
@@ -179,7 +179,6 @@ class TicTacToe:
                 try:
                     if depth == self.depth and eval < min_eval:
                         best_move = node
-
                     min_eval = min(min_eval, eval)
 
                 except:
@@ -215,6 +214,8 @@ class TicTacToe:
             return 15 + depth
         if self.checkWin(list, 0):
             return -15 - depth
+        if self.checkDraw(list):
+            return 0
 
         # check for 2 consecutive Xs
         for i in range(0, 3):
@@ -349,7 +350,7 @@ class TicTacToe:
     def checkDraw(self, state):
         for i in range(0, 3):
             for j in range(0, 3):
-                if self.state[i][j] == '':
+                if state[i][j] == '':
                     return False
         if self.checkWin(state, (self.turn + 1) % 2) or self.checkWin(state, self.turn % 2):
             return False
