@@ -1,2 +1,2 @@
 # TicTacToe
-TicTacToe with MiniMax Algorithm
+TicTacToe with MiniMax Algorithm using pygame
