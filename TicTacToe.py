@@ -1,9 +1,8 @@
 from copy import deepcopy
-import minimax
 from minimax.minimax import MiniMax
 
 
-def heuristic(state, depth):
+def heuristic(state):
     X2 = 0
     X1 = 0
     O1 = 0

@@ -7,7 +7,7 @@ class MiniMax:
     def solve(self, state, max_depth, is_maximizing, heuristic, is_terminal, get_next_states):
 
         if max_depth == 0 or is_terminal(state):
-            return state, heuristic(state, max_depth)
+            return state, heuristic(state)
 
         else:
             next_states = get_next_states(state, is_maximizing)
